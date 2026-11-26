@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: satvault-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: sat_vault
+      MYSQL_USER: satvault
+      MYSQL_PASSWORD: satvault_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - satvault_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-usatvault", "-psatvault_pass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  satvault_mysql_data:
