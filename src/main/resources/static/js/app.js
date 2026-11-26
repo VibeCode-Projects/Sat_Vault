@@ -15,6 +15,7 @@
 
   // DOM helpers
   const $ = (id) => document.getElementById(id);
+  const landingView = $('landing-view');
   const authView = $('auth-view');
   const appView = $('app-view');
 
@@ -115,15 +116,33 @@
     });
   });
 
-  // Auth Tabs
-  document.querySelectorAll('.auth-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.auth-tab').forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-      const isLogin = tab.dataset.authTab === 'login';
-      $('login-form').classList.toggle('hidden', !isLogin);
-      $('register-form').classList.toggle('hidden', isLogin);
+  // Auth Tabs & Landing Navigation
+  function switchAuthTab(tabName) {
+    document.querySelectorAll('.auth-tab').forEach((t) => {
+      t.classList.toggle('active', t.dataset.authTab === tabName);
     });
+    const isLogin = tabName === 'login';
+    $('login-form').classList.toggle('hidden', !isLogin);
+    $('register-form').classList.toggle('hidden', isLogin);
+  }
+
+  function openAuth(tabName) {
+    switchAuthTab(tabName);
+    landingView.classList.add('hidden');
+    authView.classList.remove('hidden');
+  }
+
+  $('landing-get-started-btn').addEventListener('click', () => openAuth('register'));
+  $('landing-get-started-top').addEventListener('click', () => openAuth('register'));
+  $('landing-signin-btn').addEventListener('click', () => openAuth('login'));
+  $('landing-login-btn').addEventListener('click', () => openAuth('login'));
+  $('auth-back-btn').addEventListener('click', () => {
+    authView.classList.add('hidden');
+    landingView.classList.remove('hidden');
+  });
+
+  document.querySelectorAll('.auth-tab').forEach((tab) => {
+    tab.addEventListener('click', () => switchAuthTab(tab.dataset.authTab));
   });
 
   // Auth Actions
@@ -168,15 +187,17 @@
     await api('/api/auth/logout', { method: 'POST' });
     state.user = null;
     appView.classList.add('hidden');
-    authView.classList.remove('hidden');
+    authView.classList.add('hidden');
+    landingView.classList.remove('hidden');
     $('login-password').value = '';
-    toast('Signed out securely', 'info');
+    toast('Signed out', 'info');
   });
 
   function onAuthenticated(user) {
     state.user = user;
     $('user-name').textContent = user.fullName;
     $('user-avatar').textContent = (user.fullName || 'U').charAt(0).toUpperCase();
+    landingView.classList.add('hidden');
     authView.classList.add('hidden');
     appView.classList.remove('hidden');
     loadDocuments();
@@ -189,10 +210,10 @@
       if (me && me.authenticated) {
         onAuthenticated(me);
       } else {
-        authView.classList.remove('hidden');
+        landingView.classList.remove('hidden');
       }
     } catch {
-      authView.classList.remove('hidden');
+      landingView.classList.remove('hidden');
     }
   }
 

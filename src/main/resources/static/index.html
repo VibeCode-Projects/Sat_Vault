@@ -3,21 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SatVault</title>
+  <title>Sat Vault</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
+  <!-- LANDING VIEW -->
+  <div id="landing-view" class="landing-view hidden">
+    <header class="navbar">
+      <div class="brand-mini">
+        <img src="/favicon.svg" alt="Sat Vault" class="brand-icon" />
+        <span class="brand-name">Sat Vault</span>
+      </div>
+      <div class="nav-right">
+        <button class="btn btn-ghost" id="landing-signin-btn">Sign In</button>
+        <button class="btn btn-primary" id="landing-get-started-top">Get Started</button>
+      </div>
+    </header>
+
+    <main class="landing-main">
+      <section class="hero">
+        <div class="hero-kicker">DIGITAL DOCUMENT VAULT</div>
+        <h1>Store and protect your personal &amp; academic documents.</h1>
+        <p class="hero-sub">Upload certificates, transcripts, and identity records. Categorize, search, lock with a password, and track every file action.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="landing-get-started-btn">Get Started</button>
+          <button class="btn btn-ghost btn-lg" id="landing-login-btn">Sign In</button>
+        </div>
+      </section>
+
+      <section class="landing-features">
+        <div class="feature-box">
+          <h3>Encrypted Storage</h3>
+          <p class="muted">Sensitive files are encrypted on disk and decrypted on demand when you download or preview.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Password Protection</h3>
+          <p class="muted">Lock individual documents with a separate access password before anyone can open them.</p>
+        </div>
+        <div class="feature-box">
+          <h3>Search &amp; History</h3>
+          <p class="muted">Filter by category, search by tags or title, and view a complete log of uploads and downloads.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
   <!-- AUTH VIEW -->
   <main id="auth-view" class="auth-view hidden">
     <div class="auth-card glass-card animate-pop">
+      <button type="button" class="back-link" id="auth-back-btn">← Back</button>
       <div class="auth-brand">
         <div class="vault-emblem">
-          <img src="/favicon.svg" alt="SatVault" />
+          <img src="/favicon.svg" alt="Sat Vault" />
         </div>
-        <h1>SatVault</h1>
+        <h1>Sat Vault</h1>
         <p class="subtitle">Document Vault</p>
       </div>
 
@@ -66,8 +108,8 @@
   <div id="app-view" class="app-view hidden">
     <header class="navbar">
       <div class="brand-mini">
-        <img src="/favicon.svg" alt="SatVault" class="brand-icon" />
-        <span class="brand-name">SatVault</span>
+        <img src="/favicon.svg" alt="Sat Vault" class="brand-icon" />
+        <span class="brand-name">Sat Vault</span>
       </div>
 
       <div class="nav-right">
