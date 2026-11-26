@@ -218,23 +218,24 @@ textarea:focus,
 .auth-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--border);
+  gap: 8px;
   margin-bottom: 20px;
 }
 
 .auth-tab {
   padding: 9px;
-  border: none;
+  border: 1px solid var(--border);
   background: var(--surface-alt);
   color: var(--muted);
   font-weight: 600;
   font-size: 0.84rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .auth-tab.active {
   background: var(--accent);
+  border-color: var(--accent);
   color: #ffffff;
 }
 
@@ -303,24 +304,19 @@ textarea:focus,
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border: 1px solid var(--border);
+  gap: 12px;
   margin-bottom: 24px;
 }
 
 .stat-card {
   padding: 18px 20px;
-  border: none;
-  border-right: 1px solid var(--border);
-  transition: background-color 0.15s ease;
-}
-
-.stat-card:last-child {
-  border-right: none;
+  border: 1px solid var(--border);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .stat-card:hover {
   background: var(--surface-alt);
+  border-color: var(--border-strong);
 }
 
 .stat-value {
@@ -341,30 +337,30 @@ textarea:focus,
 /* TABS */
 .view-tabs {
   display: flex;
-  gap: 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
 .view-tab {
-  padding: 10px 18px;
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: transparent;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
   color: var(--muted);
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .view-tab:hover {
   color: var(--text);
+  border-color: var(--border-strong);
 }
 
 .view-tab.active {
-  color: var(--text);
-  border-bottom-color: var(--accent);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
 }
 
 /* TOOLBAR */
@@ -624,8 +620,7 @@ textarea:focus,
 .activity-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--border);
+  gap: 8px;
 }
 
 .activity-item {
@@ -634,13 +629,8 @@ textarea:focus,
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border: none;
-  border-bottom: 1px solid var(--border);
+  border: 1px solid var(--border);
   animation: fadeUpFlat 0.2s ease-out backwards;
-}
-
-.activity-item:last-child {
-  border-bottom: none;
 }
 
 .activity-left {
@@ -731,8 +721,6 @@ textarea:focus,
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
   gap: 10px;
 }
 
@@ -762,9 +750,7 @@ textarea:focus,
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+  margin-top: 20px;
 }
 
 .form-row {
@@ -906,7 +892,6 @@ textarea:focus,
 
 @media (max-width: 720px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat-card { border-bottom: 1px solid var(--border); }
   .form-row { grid-template-columns: 1fr; }
   .activity-item { flex-direction: column; align-items: flex-start; }
   .user-name { display: none; }
